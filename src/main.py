@@ -1,106 +1,48 @@
 import flet as ft
-from flet.plotly_chart import PlotlyChart
-import plotly.express as px
-import pandas as pd
-
+from chat import chat_content
+from graph import graph_content
+from storage.data.message_storage_instance import message_store
+import asyncio
 
 def main(page: ft.Page):
-    page.title = "Analizador de THD en Frecuencia"
-    page.padding = 0
-    page.scroll = None
+    page.title = "Analizador THD - Vista Doble"
+    page.scroll = "auto"
 
-    # Leer datos del CSV
-    df = pd.read_csv("thd_data.csv")
-
-    # Controles
-    freq_start_field = ft.TextField(
-        label="Frecuencia de Inicio (Hz)",
-        width=180,
-        value="20",
-    )
-    freq_end_field = ft.TextField(
-        label="Frecuencia de Fin (Hz)",
-        width=180,
-        value="20000",
-    )
-    increment_field = ft.TextField(
-        label="Incremento (Hz)",
-        width=180,
-        value="100",
-    )
-
-    controls_row = ft.Row(
+    layout = ft.Row(
         controls=[
-            freq_start_field,
-            freq_end_field,
-            increment_field,
+            ft.Container(
+                content=graph_content(page),
+                expand=1,
+                padding=20,
+                margin=10,
+                border_radius=10,
+                bgcolor=ft.Colors.WHITE,
+                border=ft.border.all(1, ft.Colors.GREY_300),
+            ),
+            ft.Container(
+                content=chat_content(page),
+                expand=1,
+                padding=20,
+                margin=10,
+                border_radius=10,
+                bgcolor=ft.Colors.WHITE,
+                border=ft.border.all(1, ft.Colors.GREY_300),
+            ),
         ],
-        wrap=True,
-        spacing=20,
-        alignment=ft.MainAxisAlignment.CENTER,
-    )
-
-    chart_container = ft.Container(
-        alignment=ft.alignment.center,
         expand=True,
     )
 
-    # Crear la figura con fondo oscuro
-    def create_figure(width, height):
-        fig = px.line(
-            df,
-            x="Frecuencia",
-            y="THD",
-            title="THD vs Frecuencia",
-            markers=True,
-        )
-        fig.update_layout(
-            autosize=False,
-            width=width,
-            height=height,
-            margin=dict(l=20, r=20, t=50, b=20),
-            xaxis_title="Frecuencia (Hz)",
-            yaxis_title="THD (%)",
-            template="plotly_dark",  # 🌙 Fondo oscuro
-            hovermode="x unified",
-        )
-        return fig
+    page.add(layout)
 
-    # Actualizar el gráfico dinámicamente
-    def update_chart():
-        ancho = max(page.width, 300)
-        alto = max(page.height - 120, 300)
-        fig = create_figure(ancho, alto)
-        chart_container.content = PlotlyChart(fig)
-        page.update()
-
-    # Inicializar
-    update_chart()
-
-    # Redibujar cuando cambia tamaño
-    def on_resize(e):
-        update_chart()
-
-    page.on_resize = on_resize
-
-    # Layout principal
-    page.add(
-        ft.Column(
-            controls=[
-                ft.Row(
-                    [ft.Text(
-                        "Configuración de Barrido en Frecuencia",
-                        style=ft.TextThemeStyle.TITLE_MEDIUM
-                    )],
-                    alignment=ft.MainAxisAlignment.CENTER,
-                ),
-                controls_row,
-                chart_container,
-            ],
-            expand=True,
-        )
-    )
-
+    # 🔁 Prueba de mensajes programados desde main
+    async def test_bot_messages():
+        await asyncio.sleep(2)
+        message_store.add_message("bot", "🔧 Mensaje de prueba desde main #1")
+        await asyncio.sleep(2)
+        message_store.add_message("bot", "✅ Reactividad confirmada desde main.py")
+        await asyncio.sleep(2)
+        message_store.add_message("bot", "🎉 Todo está funcionando perfectamente.")
+    #page.run_task(test_bot_messages)
 
 if __name__ == "__main__":
-    ft.app(main)
+    ft.app(target=main)
