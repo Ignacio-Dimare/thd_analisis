@@ -1,0 +1,7 @@
+# Esto es un comentario (se ignora)
+\D 2
+*IDN?
+STATUS
+\D 2
+LED ON
+READ

@@ -1,0 +1,417 @@
+$
+ARDUINO GPIB firmware by E. Girlando (and MS RI INTI) Version 6.2
+>
+gpibWrite: timeout waiting NDAC
+set_comm_cntx: gpib write failed @1
+gpibTalk: set_comm-cntx failed.
+gpibWrite: timeout waiting NDAC
+set_comm_cntx: gpib write failed @1
+gpibReceive: set_comm-cntx failed.
+>
+gpibWrite: timeout waiting NDAC
+set_comm_cntx: gpib write failed @1
+gpibTalk: set_comm-cntx failed.
+gpibWrite: timeout waiting NDAC
+set_comm_cntx: gpib write failed @1
+gpibReceive: set_comm-cntx failed.
+>
+ARDUINO GPIB firmware by E. Girlando (and MS RI INTI) Version 6.2
+>
+ARDUINO GPIB firmware by E. Girlando (and MS RI INTI) Version 6.2
+>
+gpibWrite: timeout waiting NDAC
+set_comm_cntx: gpib write failed @1
+gpibTalk: set_comm-cntx failed.
+gpibWrite: timeout waiting NDAC
+set_comm_cntx: gpib write failed @1
+gpibReceive: set_comm-cntx failed.
+> gpibWrite: timeout waiting NDAC
+set_comm_cntx: gpib write failed @1
+gpibTalk: set_comm-cntx failed.
+gpibWrite: timeout waiting NDAC
+set_comm_cntx: gpib write failed @1
+gpibReceive: set_comm-cntx failed.
+> gpibWrite: timeout waiting NDAC
+set_comm_cntx: gpib write failed @1
+gpibTalk: set_comm-cntx failed.
+gpibWrite: timeout waiting NDAC
+set_comm_cntx: gpib write failed @1
+gpibReceive: set_comm-cntx failed.
+>
+gpibWrite: timeout waiting NDAC
+set_comm_cntx: gpib write failed @1
+gpibTalk: set_comm-cntx failed.
+gpibWrite: timeout waiting NDAC
+set_comm_cntx: gpib write failed @1
+gpibReceive: set_comm-cntx failed.
+> gpibWrite: timeout waiting NDAC
+set_comm_cntx: gpib write failed @1
+gpibTalk: set_comm-cntx failed.
+gpibWrite: timeout waiting NDAC
+set_comm_cntx: gpib write failed @1
+gpibReceive: set_comm-cntx failed.
+> gpibWrite: timeout waiting NDAC
+set_comm_cntx: gpib write failed @1
+gpibTalk: set_comm-cntx failed.
+gpibWrite: timeout waiting NDAC
+set_comm_cntx: gpib write failed @1
+gpibReceive: set_comm-cntx failed.
+>
+ARDUINO GPIB firmware by E. Girlando (and MS RI INTI) Version 6.2
+>
+gpibWrite: timeout waiting NDAC
+set_comm_cntx: gpib write failed @1
+gpibTalk: set_comm-cntx failed.
+gpibWrite: timeout waiting NDAC
+set_comm_cntx: gpib write failed @1
+gpibReceive: set_comm-cntx failed.
+>
+gpibWrite: timeout waiting NDAC
+set_comm_cntx: gpib write failed @1
+gpibTalk: set_comm-cntx failed.
+gpibWrite: timeout waiting NDAC
+set_comm_cntx: gpib write failed @1
+gpibReceive: set_comm-cntx failed.
+>
+gpibWrite: timeout waiting NDAC
+set_comm_cntx: gpib write failed @1
+gpibTalk: set_comm-cntx failed.
+gpibWrite: timeout waiting NDAC
+set_comm_cntx: gpib write failed @1
+gpibReceive: set_comm-cntx failed.
+>
+gpibWrite: timeout waiting NDAC
+set_comm_cntx: gpib write failed @1
+gpibTalk: set_comm-cntx failed.
+gpibWrite: timeout waiting NDAC
+set_comm_cntx: gpib write failed @1
+gpibReceive: set_comm-cntx failed.
+>
+ARDUINO GPIB firmware by E. Girlando (and MS RI INTI) Version 6.2
+>
+ARDUINO GPIB firmware by E. Girlando (and MS RI INTI) Version 6.2
+>
+gpibWrite: timeout waiting NDAC
+set_comm_cntx: gpib write failed @1
+gpibTalk: set_comm-cntx failed.
+gpibWrite: timeout waiting NDAC
+set_comm_cntx: gpib write failed @1
+gpibReceive: set_comm-cntx failed.
+> gpibWrite: timeout waiting NDAC
+set_comm_cntx: gpib write failed @1
+gpibTalk: set_comm-cntx failed.
+gpibWrite: timeout waiting NDAC
+set_comm_cntx: gpib write failed @1
+gpibReceive: set_comm-cntx failed.
+>
+gpibWrite: timeout waiting NDAC
+set_comm_cntx: gpib write failed @1
+gpibTalk: set_comm-cntx failed.
+gpibWrite: timeout waiting NDAC
+set_comm_cntx: gpib write failed @1
+gpibReceive: set_comm-cntx failed.
+>
+gpibWrite: timeout waiting NDAC
+set_comm_cntx: gpib write failed @1
+gpibTalk: set_comm-cntx failed.
+gpibWrite: timeout waiting NDAC
+set_comm_cntx: gpib write failed @1
+gpibReceive: set_comm-cntx failed.
+>
+gpibWrite: timeout waiting NDAC
+set_comm_cntx: gpib write failed @1
+gpibTalk: set_comm-cntx failed.
+gpibWrite: timeout waiting NDAC
+set_comm_cntx: gpib write failed @1
+gpibReceive: set_comm-cntx failed.
+>
+gpibWrite: timeout waiting NDAC
+set_comm_cntx: gpib write failed @1
+gpibTalk: set_comm-cntx failed.
+gpibWrite: timeout waiting NDAC
+set_comm_cntx: gpib write failed @1
+gpibReceive: set_comm-cntx failed.
+>
+gpibWrite: timeout waiting NDAC
+set_comm_cntx: gpib write failed @1
+gpibTalk: set_comm-cntx failed.
+gpibWrite: timeout waiting NDAC
+set_comm_cntx: gpib write failed @1
+gpibReceive: set_comm-cntx failed.
+>
+gpibWrite: timeout waiting NDAC
+set_comm_cntx: gpib write failed @1
+gpibTalk: set_comm-cntx failed.
+gpibWrite: timeout waiting NDAC
+set_comm_cntx: gpib write failed @1
+gpibReceive: set_comm-cntx failed.
+>
+gpibWrite: timeout waiting NDAC
+set_comm_cntx: gpib write failed @1
+gpibTalk: set_comm-cntx failed.
+gpibWrite: timeout waiting NDAC
+set_comm_cntx: gpib write failed @1
+gpibReceive: set_comm-cntx failed.
+>
+gpibWrite: timeout waiting NDAC
+set_comm_cntx: gpib write failed @1
+gpibTalk: set_comm-cntx failed.
+gpibWrite: timeout waiting NDAC
+set_comm_cntx: gpib write failed @1
+gpibReceive: set_comm-cntx failed.
+> gpibWrite: timeout waiting NDAC
+set_comm_cntx: gpib write failed @1
+gpibTalk: set_comm-cntx failed.
+gpibWrite: timeout waiting NDAC
+set_comm_cntx: gpib write failed @1
+gpibReceive: set_comm-cntx failed.
+>
+gpibWrite: timeout waiting NDAC
+set_comm_cntx: gpib write failed @1
+gpibTalk: set_comm-cntx failed.
+gpibWrite: timeout waiting NDAC
+set_comm_cntx: gpib write failed @1
+gpibReceive: set_comm-cntx failed.
+>
+ARDUINO GPIB firmware by E. Girlando (and MS RI INTI) Version 6.2
+>
+gpibWrite: timeout waiting NDAC
+set_comm_cntx: gpib write failed @1
+gpibTalk: set_comm-cntx failed.
+gpibWrite: timeout waiting NDAC
+set_comm_cntx: gpib write failed @1
+gpibReceive: set_comm-cntx failed.
+>
+gpibWrite: timeout waiting NDAC
+set_comm_cntx: gpib write failed @1
+gpibTalk: set_comm-cntx failed.
+gpibWrite: timeout waiting NDAC
+set_comm_cntx: gpib write failed @1
+gpibReceive: set_comm-cntx failed.
+>
+gpibWrite: timeout waiting NDAC
+set_comm_cntx: gpib write failed @1
+gpibTalk: set_comm-cntx failed.
+gpibWrite: timeout waiting NDAC
+set_comm_cntx: gpib write failed @1
+gpibReceive: set_comm-cntx failed.
+>
+gpibWrite: timeout waiting NDAC
+set_comm_cntx: gpib write failed @1
+gpibTalk: set_comm-cntx failed.
+gpibWrite: timeout waiting NDAC
+set_comm_cntx: gpib write failed @1
+gpibReceive: set_comm-cntx failed.
+>
+gpibWrite: timeout waiting NDAC
+set_comm_cntx: gpib write failed @1
+gpibTalk: set_comm-cntx failed.
+gpibWrite: timeout waiting NDAC
+set_comm_cntx: gpib write failed @1
+gpibReceive: set_comm-cntx failed.
+>
+gpibWrite: timeout waiting NDAC
+set_comm_cntx: gpib write failed @1
+gpibTalk: set_comm-cntx failed.
+gpibWrite: timeout waiting NDAC
+set_comm_cntx: gpib write failed @1
+gpibReceive: set_comm-cntx failed.
+>
+gpibWrite: timeout waiting NDAC
+set_comm_cntx: gpib write failed @1
+gpibTalk: set_comm-cntx failed.
+gpibWrite: timeout waiting NDAC
+set_comm_cntx: gpib write failed @1
+gpibReceive: set_comm-cntx failed.
+>
+<X)
+ARDUINO GPIB firmware by E. Girlando (and MS RI INTI) Version 6.2
+>
+gpibWrite: timeout waiting NDAC
+set_comm_cntx: gpib write failed @1
+gpibTalk: set_comm-cntx failed.
+gpibWrite: timeout waiting NDAC
+set_comm_cntx: gpib write failed @1
+gpibReceive: set_comm-cntx failed.
+>
+gpibWrite: timeout waiting NDAC
+set_comm_cntx: gpib write failed @1
+gpibTalk: set_comm-cntx failed.
+gpibWrite: timeout waiting NDAC
+set_comm_cntx: gpib write failed @1
+gpibReceive: set_comm-cntx failed.
+>
+gpibWrite: timeout waiting NDAC
+set_comm_cntx: gpib write failed @1
+gpibTalk: set_comm-cntx failed.
+gpibWrite: timeout waiting NDAC
+set_comm_cntx: gpib write failed @1
+gpibReceive: set_comm-cntx failed.
+>
+gpibWrite: timeout waiting NDAC
+set_comm_cntx: gpib write failed @1
+gpibTalk: set_comm-cntx failed.
+gpibWrite: timeout waiting NDAC
+set_comm_cntx: gpib write failed @1
+gpibReceive: set_comm-cntx failed.
+>
+gpibWrite: timeout waiting NDAC
+set_comm_cntx: gpib write failed @1
+gpibTalk: set_comm-cntx failed.
+gpibWrite: timeout waiting NDAC
+set_comm_cntx: gpib write failed @1
+gpibReceive: set_comm-cntx failed.
+>
+ARDUINO GPIB firmware by E. Girlando (and MS RI INTI) Version 6.2
+>
+gpibRead: timeout waiting DAV
+gpibReceive: Read timedout.
+>
+gpibRead: timeout waiting DAV
+gpibReceive: Read timedout.
+>
+gpibTalk: ASSERT error: Invalid eos.
+gpibRead: timeout waiting DAV
+gpibReceive: Read timedout.
+>
+ARDUINO GPIB firmware by E. Girlando (and MS RI INTI) Version 6.2
+>
+>
+ARDUINO GPIB firmware by E. Girlando (and MS RI INTI) Version 6.2
+>
+ARDUINO GPIB firmware by E. Girlando (and MS RI INTI) Version 6.2
+>
+90011E+05
+>
+ARDUINO GPIB firmware by E. Girlando (and MS RI INTI) Version 6.2
+>
+90009E+05
+>
+gpibWrite: timeout waiting NDAC
+set_comm_cntx: gpib write failed @1
+gpibTalk: set_comm-cntx failed.
+gpibWrite: timeout waiting NDAC
+set_comm_cntx: gpib write failed @1
+gpibReceive: set_comm-cntx failed.
+>
+gpibWrite: timeout waiting NDAC
+set_comm_cntx: gpib write failed @1
+gpibTalk: set_comm-cntx failed.
+gpibWrite: timeout waiting NDAC
+set_comm_cntx: gpib write failed @1
+gpibReceive: set_comm-cntx failed.
+>
+ARDUINO GPIB firmware by E. Girlando (and MS RI INTI) Version 6.2
+>
+gpibRead: timeout waiting DAV
+gpibReceive: Read timedout.
+>
+01492E-08
+>
+>
+gpibRead: timeout waiting DAV
+gpibReceive: Read timedout.
+>
+01519E-08
+>
+>
+gpibRead: timeout waiting DAV
+gpibReceive: Read timedout.
+>
+01007E-03
+>
+ARDUINO GPIB firmware by E. Girlando (and MS RI INTI) Version 6.2
+>
+>
+ARDUINO GPIB firmware by E. Girlando (and MS RI INTI) Version 6.2
+>
+gpibRead: timeout waiting DAV
+gpibReceive: Read timedout.
+>
+00014E-02
+>
+ARDUINO GPIB firmware by E. Girlando (and MS RI INTI) Version 6.2
+>
+01540E-08
+01493E-08
+90012E+05
+00017E-02
+00017E-02
+017E-02
+0015E-02
+ 
+016E-02
+0015E+05
+00030E-02
+00030E-02
+00017E-02
+0017E-02
+ 
+015E-02
+015E-02
+0060E-02
+ 
+030E-02
+0030E-02
+ 
+029E-02
+0015E+05
+ 
+078E-04
+0015E+05
+ 
+078E-04
+079E-04
+0015E+05
+ 
+0062E-04
+00013E-02
+0013E-02
+ 
+013E-02
+012E-02
+0027E-02
+ 
+027E-02
+0026E-02
+ 
+015E+05
+ 
+075E-04
+0015E+05
+ 
+015E+05
+ 
+066E-04
+00080E-04
+00079E-04
+011E-02
+0096E-03
+00010E-02
+ 
+015E+05
+ 
+025E-02
+024E-02
+00028E-02
+00028E-02
+00016E-02
+0016E-02
+014E-02
+ 
+030E-02
+00029E-02
+00029E-02
+00029E-02
+00018E-02
+ 
+016E-02
+ 
+014E-02
+00029E-02
+00029E-02
+00016E-02
+016E-02
+0015E-02
+0029E-02
+ 
