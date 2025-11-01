@@ -1,4 +1,3 @@
-# src/chat.py
 import flet as ft
 from flet import Icons
 import asyncio
@@ -6,12 +5,15 @@ from storage.data.message_storage_instance import message_store
 from serial_service import SerialService
 from serial.tools import list_ports
 
+# ✅ Estado compartido global SerialService
+from app_state import serial_ref
+
 # ===== Paleta oscura (estática) =====
-CARD_BG            = "#161B22"  # fondo del panel
+CARD_BG            = "#161B22"
 CARD_BORDER        = "#30363D"
 TEXT_PRIMARY       = "#E6EDF3"
 TEXT_MUTED         = "#9BA8B3"
-PRIMARY            = "#3B82F6"  # acento / conectado
+PRIMARY            = "#3B82F6"
 BUBBLE_USER_BG     = "#1F6FEB"
 BUBBLE_USER_TEXT   = "#FFFFFF"
 BUBBLE_OTHER_BG    = "#1F242D"
@@ -25,11 +27,10 @@ def chat_content(page: ft.Page):
 
     # --- área de mensajes
     chat_display = ft.ListView(expand=True, spacing=10, auto_scroll=True)
-    mounted = False  # bandera: controles montados
+    mounted = False
 
     def safe_update(ctrl: ft.Control):
-        if ctrl.page:
-            ctrl.update()
+        if ctrl.page: ctrl.update()
 
     def render_messages():
         chat_display.controls.clear()
@@ -49,10 +50,9 @@ def chat_content(page: ft.Page):
                     width=360,
                 )
             )
-        if chat_display.page:
-            chat_display.update()
+        if chat_display.page: chat_display.update()
 
-    # --- helpers de estilo
+    # --- estilo
     def style_input(tf: ft.TextField):
         tf.bgcolor = INPUT_BG
         tf.color = TEXT_PRIMARY
@@ -70,13 +70,12 @@ def chat_content(page: ft.Page):
     input_field = ft.TextField(hint_text="Escribe...", expand=True)
     style_input(input_field)
 
-    serial_ref: dict[str, SerialService | None] = {"svc": None}
-
     def send_message(e):
         text = input_field.value.strip()
-        if not text:
-            return
+        if not text: return
+
         message_store.add_message("user", text)
+
         if serial_ref["svc"] and serial_ref["svc"].is_running:
             try:
                 serial_ref["svc"].send(text)
@@ -84,6 +83,7 @@ def chat_content(page: ft.Page):
                 page.snack_bar = ft.SnackBar(ft.Text(f"Error enviando al serial: {ex}"))
                 page.snack_bar.open = True
                 page.update()
+
         input_field.value = ""
         input_field.update()
 
@@ -94,14 +94,14 @@ def chat_content(page: ft.Page):
     status_text = ft.Text("Serial: desconectado", size=12, color=TEXT_MUTED)
     title = ft.Text("💬 Chat con el Asistente THD", size=20, color=TEXT_PRIMARY)
 
-    # --- controles serial
+    # --- Serial controls
     port_dd = ft.Dropdown(label="Puerto", options=[], width=220)
     baud_dd = ft.Dropdown(
         label="Baudrate",
         options=[ft.dropdown.Option(v) for v in DEFAULT_BAUDS],
-        value="9600",
-        width=160,
+        value="9600", width=160
     )
+
     style_dropdown(port_dd)
     style_dropdown(baud_dd)
 
@@ -124,18 +124,21 @@ def chat_content(page: ft.Page):
             page.snack_bar.open = True
             page.update()
             return
+
         if not port_dd.value:
             page.snack_bar = ft.SnackBar(ft.Text("Selecciona un puerto."))
             page.snack_bar.open = True
             page.update()
             return
+
         try:
             svc = SerialService(port=port_dd.value, baudrate=int(baud_dd.value), pubsub=ps)
             svc.start()
-            serial_ref["svc"] = svc
+            serial_ref["svc"] = svc   # ✅ publicar serial global
             status_text.value = f"Serial: conectado a {port_dd.value} @ {baud_dd.value}"
             status_text.color = PRIMARY
             safe_update(status_text)
+
         except Exception as ex:
             page.snack_bar = ft.SnackBar(ft.Text(f"No se pudo conectar: {ex}"))
             page.snack_bar.open = True
@@ -143,11 +146,10 @@ def chat_content(page: ft.Page):
 
     def disconnect(e):
         if serial_ref["svc"]:
-            try:
-                serial_ref["svc"].stop()
-            except Exception:
-                pass
+            try: serial_ref["svc"].stop()
+            except: pass
             serial_ref["svc"] = None
+
         status_text.value = "Serial: desconectado"
         status_text.color = TEXT_MUTED
         safe_update(status_text)
@@ -155,7 +157,7 @@ def chat_content(page: ft.Page):
     connect_btn = ft.ElevatedButton("Conectar", icon=Icons.PLAY_ARROW, on_click=connect)
     disconnect_btn = ft.OutlinedButton("Desconectar", icon=Icons.STOP, on_click=disconnect)
 
-    # --- FilePicker para "enviar archivo…"
+    # --- FilePicker
     file_picker = ft.FilePicker()
     page.overlay.append(file_picker)
     page.update()
@@ -176,130 +178,40 @@ def chat_content(page: ft.Page):
 
     file_picker.on_result = on_file_picked
 
-    # --- Diálogo para envío por lote (una sola instancia) ---
-    commands_tf = ft.TextField(
-        label="Comandos (uno por línea)", multiline=True, min_lines=6, max_lines=12, width=360,
-        bgcolor=INPUT_BG, color=TEXT_PRIMARY, border_color=CARD_BORDER,
-        focused_border_color=PRIMARY, hint_style=ft.TextStyle(color=TEXT_MUTED)
-    )
-    interval_tf = ft.TextField(
-        label="Intervalo (s)", width=120, value="1.0",
-        bgcolor=INPUT_BG, color=TEXT_PRIMARY, border_color=CARD_BORDER,
-        focused_border_color=PRIMARY, hint_style=ft.TextStyle(color=TEXT_MUTED)
-    )
+    # --- Batch dialog
+    commands_tf = ft.TextField(label="Comandos", multiline=True, min_lines=6, max_lines=12, width=360,
+                               bgcolor=INPUT_BG, color=TEXT_PRIMARY, border_color=CARD_BORDER,
+                               focused_border_color=PRIMARY, hint_style=ft.TextStyle(color=TEXT_MUTED))
+    interval_tf = ft.TextField(label="Intervalo (s)", width=120, value="1.0",
+                               bgcolor=INPUT_BG, color=TEXT_PRIMARY, border_color=CARD_BORDER,
+                               focused_border_color=PRIMARY, hint_style=ft.TextStyle(color=TEXT_MUTED))
 
     def send_batch_now(e):
-        if not serial_ref["svc"]:
-            return
+        if not serial_ref["svc"]: return
         cmds = [ln.strip() for ln in (commands_tf.value or "").splitlines() if ln.strip()]
-        try:
-            interval = float(interval_tf.value or "1.0")
-        except:
-            interval = 1.0
+        try: interval = float(interval_tf.value or "1.0")
+        except: interval = 1.0
         if cmds:
             serial_ref["svc"].send_lines(cmds, interval=interval)
-        dlg.open = False
-        page.update()
-
-    def close_dlg(e=None):
-        dlg.open = False
-        page.update()
+        dlg.open = False; page.update()
 
     dlg = ft.AlertDialog(
-        modal=True,
-        title=ft.Text("Enviar lote de comandos", color=TEXT_PRIMARY),
-        content=ft.Column([commands_tf, interval_tf], tight=True, spacing=10),
-        actions=[
-            ft.TextButton("Cancelar", on_click=close_dlg),
-            ft.ElevatedButton("Enviar", on_click=send_batch_now),
-        ],
+        modal=True, title=ft.Text("Enviar lote de comandos", color=TEXT_PRIMARY),
+        content=ft.Column([commands_tf, interval_tf], spacing=10),
+        actions=[ft.TextButton("Cancelar", on_click=lambda e: (setattr(dlg, "open", False), page.update())),
+                 ft.ElevatedButton("Enviar", on_click=send_batch_now)],
         actions_alignment=ft.MainAxisAlignment.END,
     )
-
-    # 👇 Adjuntamos el diálogo AL ÁRBOL (clave en algunas versiones de Flet)
     page.overlay.append(dlg)
 
-    def open_batch_dialog(e):
-        dlg.open = True
-        page.update()
+    def open_batch_dialog(e): dlg.open = True; page.update()
 
-    # --- Control de lectura manual (opcional)
-    def stop_read(e):
-        if serial_ref["svc"]:
-            serial_ref["svc"].stop_read()
+    def stop_read(e):  
+        if serial_ref["svc"]: serial_ref["svc"].stop_read()
 
-    def start_read(e):
-        if serial_ref["svc"]:
-            serial_ref["svc"].start_read()  # usa log.txt por defecto
+    def start_read(e): 
+        if serial_ref["svc"]: serial_ref["svc"].start_read()
 
-    # === NUEVO: Controles y botón para disparar la secuencia RL ===
-    repeats_tf = ft.TextField(
-        label="Repeticiones", value="10", width=130
-    )
-    delay_seq_tf = ft.TextField(
-        label="Delay (s)", value="0.5", width=120
-    )
-    style_input(repeats_tf)
-    style_input(delay_seq_tf)
-
-    running_seq = {"flag": False}
-
-    def run_sequence_clicked(e):
-        if running_seq["flag"]:
-            return
-        if not serial_ref["svc"] or not serial_ref["svc"].is_running:
-            page.snack_bar = ft.SnackBar(ft.Text("Conecta el serial antes de ejecutar la secuencia."))
-            page.snack_bar.open = True
-            page.update()
-            return
-
-        # Parseo seguro
-        try:
-            repeats = int((repeats_tf.value or "10").strip())
-        except:
-            repeats = 10
-        try:
-            delay_s = float((delay_seq_tf.value or "0.5").strip())
-        except:
-            delay_s = 0.5
-
-        async def run_sequence_task():
-            running_seq["flag"] = True
-            seq_btn.disabled = True
-            seq_btn.text = "Ejecutando…"
-            seq_btn.icon = Icons.HOURGLASS_EMPTY
-            seq_btn.update()
-
-            message_store.add_message("system", f"Iniciando secuencia RL (reps={repeats}, delay={delay_s}s)…")
-
-            # Ejecuta en hilo aparte para no bloquear la UI
-            values = await asyncio.to_thread(
-                serial_ref["svc"].run_measurement_sequence,
-                repeats, delay_s
-            )
-
-            if values:
-                # Mostrar resultados en el chat
-                message_store.add_message("system", f"RL lecturas: {values}")
-                try:
-                    avg = sum(values) / len(values)
-                    message_store.add_message("system", f"Promedio RL: {avg:.6f}")
-                except Exception:
-                    pass
-            else:
-                message_store.add_message("system", "No se obtuvieron lecturas RL (lista vacía).")
-
-            running_seq["flag"] = False
-            seq_btn.disabled = False
-            seq_btn.text = "Secuencia RL"
-            seq_btn.icon = Icons.ANALYTICS
-            seq_btn.update()
-
-        page.run_task(run_sequence_task)
-
-    seq_btn = ft.ElevatedButton("Secuencia RL", icon=Icons.ANALYTICS, on_click=run_sequence_clicked)
-
-    # Fila de acciones extra
     actions_row = ft.Row(
         [
             ft.ElevatedButton("Enviar lote…", icon=Icons.LIST, on_click=open_batch_dialog),
@@ -307,45 +219,28 @@ def chat_content(page: ft.Page):
                               on_click=lambda e: file_picker.pick_files(allow_multiple=False)),
             ft.OutlinedButton("Detener lectura", icon=Icons.PAUSE, on_click=stop_read),
             ft.OutlinedButton("Reanudar lectura", icon=Icons.PLAY_ARROW, on_click=start_read),
-            # === NUEVOS controles para la secuencia RL ===
-            repeats_tf, delay_seq_tf, seq_btn,
         ],
-        wrap=True,
-        spacing=10,
-        alignment=ft.MainAxisAlignment.START,
+        wrap=True, spacing=10, alignment=ft.MainAxisAlignment.START,
     )
 
     controls_row = ft.Row(
         [port_dd, refresh_btn, baud_dd, connect_btn, disconnect_btn],
-        wrap=True,
-        spacing=10,
-        alignment=ft.MainAxisAlignment.START,
+        wrap=True, spacing=10, alignment=ft.MainAxisAlignment.START,
     )
 
-    # --- layout del chat
     chat_ui = ft.Column(
         controls=[title, status_text, controls_row, actions_row, chat_display, input_row],
         expand=True,
     )
 
-    # Contenedor raíz del panel (fondo oscuro fijo)
-    root = ft.Container(
-        content=chat_ui,
-        bgcolor=CARD_BG,
-        padding=0,
-        border_radius=0,
-    )
+    root = ft.Container(content=chat_ui, bgcolor=CARD_BG)
 
-    # --- PubSub: solo para mensajes
+    # PubSub
     def on_pubsub_msg(data):
         if isinstance(data, dict) and "from" in data and "text" in data:
             message_store.add_message(data["from"], data["text"])
 
     async def after_mount():
-        nonlocal mounted
-        while chat_display.page is None:
-            await asyncio.sleep(0.05)
-        mounted = True
         ps.subscribe(on_pubsub_msg)
         message_store.subscribe(render_messages)
         render_messages()

@@ -8,7 +8,9 @@ authors = [
     { name = "Flet developer", email = "you@example.com" }
 ]
 dependencies = [
-  "flet==0.28.3"
+  "flet==0.28.3",
+  "pyserial (>=3.5,<4.0)",
+  "plotly (>=6.3.1,<7.0.0)"
 ]
 
 [tool.flet]
