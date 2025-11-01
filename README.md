@@ -1,81 +1,80 @@
-# ThdAnalyzer app
+# THD Analyzer – Interfaz Flet para medición por puerto serial
 
-## Run the app
+Este proyecto es una aplicación gráfica hecha con **Flet + Python** para comunicarte con un analizador THD (u otro equipo de medición) mediante **puerto serial (COM/USB)**, ejecutar secuencias de mediciones y visualizar resultados en tiempo real mediante un gráfico THD vs Frecuencia. ESte proyecto fue diseñado con el proposito especifico de comunicarse con un equipo Amber 5500 GPIB mediante un Arduino capz de convertir el COM/USB a GPIB
 
-### uv
+## Características principales
+- Interfaz gráfica en Flet
+- Comunicación serial (pyserial)
+- Chat para enviar comandos manuales
+- Envío de comandos por lote y archivos
+- Ejecución automática de secuencias
+- Guardado automático en `thd_data.csv`
+- Gráfico dinámico THD vs Frecuencia (Plotly)
+- Lectura continua del CSV para actualizar el gráfico
 
-Run as a desktop app:
+---
 
-```
-uv run flet run
-```
-
-Run as a web app:
-
-```
-uv run flet run --web
-```
-
-### Poetry
-
-Install dependencies from `pyproject.toml`:
+## 📂 Estructura del proyecto
 
 ```
+src/
+ ├── main.py                  # Punto de entrada de la app
+ ├── chat.py                  # Panel derecho: serial, chat y comandos
+ ├── graph.py                 # Panel izquierdo: gráfico dinámico THD
+ ├── serial_service.py        # Manejo de comunicación serial
+storage/
+ └── data/
+     └── message_storage_instance.py # Almacenamiento de mensajes
+pyproject.toml               
+README.md                    
+```
+
+---
+
+## Descripción rápida de cada archivo
+
+| Archivo | Función |
+|--------|--------|
+`main.py` | Layout principal (split: gráfico + chat) |
+`chat.py` | Puerto serial, chat, envío de comandos, secuencia RL |
+`graph.py` | Configuración gráfico, lectura CSV, actualización gráfica |
+`serial_service.py` | Comunicación serial y medición automática |
+`message_storage_instance.py` | Buffer y suscripción de mensajes UI |
+
+---
+
+## Cómo inicializar el proyecto
+### Con Poetry
+```bash
 poetry install
+poetry run python src/main.py
 ```
+---
 
-Run as a desktop app:
+## Archivos generados automáticamente
 
-```
-poetry run flet run
-```
+| Archivo | Propósito |
+|---|---|
+`log.txt` | Registro de datos recibidos |
+`thd_data.csv` | Datos de medición para graficar |
 
-Run as a web app:
+---
 
-```
-poetry run flet run --web
-```
+## Stack Tecnológico
 
-For more details on running the app, refer to the [Getting Started Guide](https://flet.dev/docs/getting-started/).
+- Python 3.9+
+- Flet
+- PySerial
+- Plotly
+- Pandas
 
-## Build the app
+---
 
-### Android
+## Autores
 
-```
-flet build apk -v
-```
+Proyecto para mediciones THD vía puerto serial desarrollado por:
+1. Campagnoli Felipe
+2. Dimare Ignacio
+3. Dominguez Matias
 
-For more details on building and signing `.apk` or `.aab`, refer to the [Android Packaging Guide](https://flet.dev/docs/publish/android/).
-
-### iOS
-
-```
-flet build ipa -v
-```
-
-For more details on building and signing `.ipa`, refer to the [iOS Packaging Guide](https://flet.dev/docs/publish/ios/).
-
-### macOS
-
-```
-flet build macos -v
-```
-
-For more details on building macOS package, refer to the [macOS Packaging Guide](https://flet.dev/docs/publish/macos/).
-
-### Linux
-
-```
-flet build linux -v
-```
-
-For more details on building Linux package, refer to the [Linux Packaging Guide](https://flet.dev/docs/publish/linux/).
-
-### Windows
-
-```
-flet build windows -v
-```
-
-For more details on building Windows package, refer to the [Windows Packaging Guide](https://flet.dev/docs/publish/windows/).
+---
