@@ -1,6 +1,6 @@
 # THD Analyzer – Interfaz Flet para medición por puerto serial
 
-Este proyecto es una aplicación gráfica hecha con **Flet + Python** para comunicarte con un analizador THD (u otro equipo de medición) mediante **puerto serial (COM/USB)**, ejecutar secuencias de mediciones y visualizar resultados en tiempo real mediante un gráfico THD vs Frecuencia. ESte proyecto fue diseñado con el proposito especifico de comunicarse con un equipo Amber 5500 GPIB mediante un Arduino capz de convertir el COM/USB a GPIB
+Este proyecto es una aplicación gráfica hecha con **Flet + Python** para comunicarte con un analizador THD (u otro equipo de medición) mediante **puerto serial (COM/USB)**, ejecutar secuencias de mediciones y visualizar resultados en tiempo real mediante un gráfico THD vs Frecuencia. Este proyecto fue diseñado con el proposito especifico de comunicarse con un equipo Amber 5500 GPIB mediante un Arduino capaz de convertir el COM/USB a GPIB
 
 ## Características principales
 - Interfaz gráfica en Flet
